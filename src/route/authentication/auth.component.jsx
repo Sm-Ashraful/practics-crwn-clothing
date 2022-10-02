@@ -1,4 +1,5 @@
 import React from "react";
+import "./auth.style.scss";
 // import { useEffect } from "react";
 
 // import { getRedirectResult } from "firebase/auth";
@@ -19,7 +20,7 @@ const Authentication = () => {
   // };
 
   return (
-    <div>
+    <div className="authentication-container">
       <SignInForm />
       <SignUpForm />
     </div>

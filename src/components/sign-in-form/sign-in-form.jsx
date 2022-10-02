@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
 import {
   singInWithGooglePopup,
-  createUserDataModelForm,
   signAuthInWIthEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
@@ -21,9 +21,7 @@ const SignInForm = () => {
   const { email, password } = formData;
 
   const signInWithGoogle = async () => {
-    const { user } = await singInWithGooglePopup();
-
-    await createUserDataModelForm(user);
+    await singInWithGooglePopup();
   };
 
   const resetField = () => {
@@ -40,11 +38,19 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signAuthInWIthEmailAndPassword(email, password);
-      console.log(response);
+      await signAuthInWIthEmailAndPassword(email, password);
       resetField();
     } catch (error) {
-      console.log("User login failed ", error);
+      switch (error.code) {
+        case "auth/user-not-found":
+          alert("Invalid Email");
+          break;
+        case "auth/wrong-password":
+          alert("Incorrect Password");
+          break;
+        default:
+          console.log("User login failed ", error);
+      }
     }
   };
 
