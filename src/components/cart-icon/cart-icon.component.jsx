@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { CartContext } from "../../context/cart.context";
 import { ReactComponent as ShoppingCart } from "../../assets/111 shopping-bag.svg";
@@ -6,7 +6,7 @@ import { ReactComponent as ShoppingCart } from "../../assets/111 shopping-bag.sv
 import "./cart-icon.style.scss";
 
 const CartIcon = () => {
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
 
   const toggoleCartIcon = () => {
     setIsCartOpen(!isCartOpen);
@@ -15,7 +15,7 @@ const CartIcon = () => {
   return (
     <div className="cart-icon-container" onClick={toggoleCartIcon}>
       <ShoppingCart className="shopping-icon" />
-      <span className="item-count">0</span>
+      <span className="item-count">{cartCount}</span>
     </div>
   );
 };
