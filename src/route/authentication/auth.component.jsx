@@ -1,11 +1,13 @@
 import React from "react";
-import "./auth.style.scss";
+
 // import { useEffect } from "react";
 
 // import { getRedirectResult } from "firebase/auth";
 
 import SignUpForm from "../../components/sign-up-form/sign-up-form";
 import SignInForm from "../../components/sign-in-form/sign-in-form";
+
+import { AuthenticationContainer } from "./auth.style";
 
 const Authentication = () => {
   //   useEffect(() => {
@@ -20,10 +22,10 @@ const Authentication = () => {
   // };
 
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationContainer>
   );
 };
 

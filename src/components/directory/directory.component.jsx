@@ -1,15 +1,14 @@
 import React from "react";
-import Card from "../card/card.component";
-
-import "./directory.style.scss";
+import DirectoryItem from "../diretory-item/directory-item.component";
+import { CategoriesContainer } from "./directory.style.jsx";
 
 const Directory = ({ categories }) => {
   return (
-    <div className="categories-container">
+    <CategoriesContainer>
       {categories.map((category) => (
-        <Card key={category.id} category={category} />
+        <DirectoryItem key={category.id} category={category} />
       ))}
-    </div>
+    </CategoriesContainer>
   );
 };
 
