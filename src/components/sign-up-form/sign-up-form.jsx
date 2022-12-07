@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
+import { useDispatch } from "react-redux";
 import {
   createUserAuthFromEmailAndPassword,
   createUserDataModelForm,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import { UserContext } from "../../context/context";
+import { setCurrentUser } from "../../store/user/user.action";
 
 import { UserSignUpContainer } from "../sign-in-form/sign-in-form.style";
 
@@ -17,8 +18,8 @@ const defaultFormData = {
 };
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState(defaultFormData);
-  const { setCurrentUser } = useContext(UserContext);
 
   const { displayName, email, password, confirmPassword } = formData;
 
@@ -44,7 +45,7 @@ const SignUpForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
+      dispatch(setCurrentUser(user));
 
       await createUserDataModelForm(user, { displayName });
       resetField();

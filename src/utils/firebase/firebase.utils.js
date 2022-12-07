@@ -67,13 +67,7 @@ export const getCollectionAndDocuments = async () => {
   const q = query(collectonRef);
 
   const querySnapshot = await getDocs(q);
-  const documentMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-
-    return acc;
-  }, {});
-  return documentMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDataModelForm = async (
